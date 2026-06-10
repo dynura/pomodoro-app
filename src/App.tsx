@@ -41,7 +41,14 @@ function App() {
 
     // Handles clicking the main Start/Stop button
     const handleStartStop = () => {
-      setIsRunning(!isRunning);
+      if (isRunning) {
+        // If it's already running, STOP it and RESET the time
+        setIsRunning(false);
+        setTimeLeft(isBreak ? 5 * 60 : 25 * 60); 
+      } else {
+        // If it's idle, START the countdown
+        setIsRunning(true);
+      }
     };
 
     // Swaps between 25-minute work sessions and 5-minute breaks
@@ -62,37 +69,58 @@ function App() {
 
     // Visual Layout
     return (
-    <div className={`container ${isRunning ? 'running' : 'idle'}`}>
-      {/* Top Border Close Button */}
-      <button className="close-button" onClick={handleCloseApp}>X</button>
+      <div className="container">
+        <div className="header-bar">
+          <span>WORK FASTER ♡</span>
+          <button className="close-button" onClick={handleCloseApp}>X</button>
+        </div>
 
-      {/* Mode Selection Tabs */}
-      <div className="mode-selection">
-        <button 
-          className={`mode-btn ${!isBreak ? 'active' : ''}`} 
-          onClick={() => switchMode(false)}
-        >
-          Work
-        </button>
-        <button 
-          className={`mode-btn ${isBreak ? 'active' : ''}`} 
-          onClick={() => switchMode(true)}
-        >
-          Break
-        </button>
+        <div className="main-board">
+          <div className="mode-selection">
+            <button 
+              className={`mode-btn ${!isBreak ? 'active' : ''}`} 
+              onClick={() => switchMode(false)}
+            >
+              WORK
+            </button>
+            <button 
+              className={`mode-btn ${isBreak ? 'active' : ''}`} 
+              onClick={() => switchMode(true)}
+            >
+              BREAK
+            </button>
+          </div>
+
+          <div className="timer-display">
+            <h1>{formatTime(timeLeft)}</h1>
+            <p>{isBreak ? "☕ Rest up!" : "💻 Stay focused!"}</p>
+          </div>
+
+          <div className="character-display">
+            {/* Timer is IDLE */}
+            {!isRunning && (
+              <>
+                <img src={`${process.env.PUBLIC_URL}/cat-idle.gif`} alt="siamese" />
+                <img src={`${process.env.PUBLIC_URL}/dog-idle.gif`} alt="golden" />
+              </>
+            )}
+
+            {/* Timer is RUNNING & WORK mode (Notice the fix to !isBreak) */}
+            {isRunning && !isBreak && (
+              <img src={`${process.env.PUBLIC_URL}/cat.gif`} alt="cat working" />
+            )}
+
+            {/* Timer is RUNNING & BREAK mode (Notice the fix to isBreak) */}
+            {isRunning && isBreak && (
+              <img src={`${process.env.PUBLIC_URL}/dog.gif`} alt="dog resting" />
+            )}
+          </div>
+
+          <button className="control-btn" onClick={handleStartStop}>
+            <img src={isRunning ? "repeat-button.png" : "play-button.png"} alt="control" />
+          </button>
+        </div>
       </div>
-
-      {/* Main App Core Components */}
-      <div className="timer-display">
-        <h1>{formatTime(timeLeft)}</h1>
-        <p>{isBreak ? "☕ Rest up!" : "💻 Stay focused!"}</p>
-      </div>
-
-      {/* Playback Control Actions */}
-      <button className="control-btn" onClick={handleStartStop}>
-        {isRunning ? 'RESET' : 'START'}
-      </button>
-    </div>
   );
 }
 

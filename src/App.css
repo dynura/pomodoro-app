@@ -1,38 +1,153 @@
-.App {
-  text-align: center;
+/* Import Retro Pixel Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+
+/* Base Reset & App Container */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Silkscreen', 'Press Start 2P', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  overflow: hidden;
+  background: transparent;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  width: 400px;
+  height: 400px;
+  background-color: #d6d085;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-app-region: drag; /* Allow dragging the window */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Top Header Bar */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.close-button {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 4px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+  -webkit-app-region: no-drag; /* Exclude button from drag region */
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #FF6B6B;
+  border-color: #FF6B6B;
+}
+
+/* Main Content Area */
+.main-board {
+  flex: 1;
+  background-color: #7ba1c8;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  padding: 16px;
+  background-image: url('../public/background.png');
+  background-size: cover;
+  background-position: bottom;
+}
+
+/* Mode Tabs (Work/Break) */
+.mode-selection {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  -webkit-app-region: no-drag; /* Exclude tabs from drag region */
+}
+
+.mode-btn{
+  background: transparent;
+  border: 1px solid #9dd6dd;
+  color: #9dd6dd;
+  border-radius: 20px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background-color: #9dd6dd;
+  color: #ffffff;
+  border-color: #9dd6dd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Timer Display */
+.timer-display {
+  text-align: center;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.timer-display h1 {
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+  margin-bottom: 4px;
+}
+
+/* Character Animation Box */
+.character-display{
+  position: absolute;
+  bottom: 75px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
+  gap: 16px;
+  width: 100%;
+  z-index: 2;
 }
 
-.App-link {
-  color: #61dafb;
+.character-display img {
+  max-height: 80px;
+  object-fit: contain;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Control Buttons */
+.control-btn {
+  position: absolute;
+  bottom: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  -webkit-app-region: no-drag; /* Exclude buttons from drag region */
+  z-index: 3;
+  transition: transform 0.1s ease;
+}
+
+.control-btn:active {
+  transform: scale(0.92);
+}
+
+.control-btn img {
+  width: 50px;
+  height: 50px;
 }
