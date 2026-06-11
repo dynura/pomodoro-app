@@ -1,51 +1,26 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# WORK FASTER ♡ 🐾
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A cozy, pixel-art desktop Pomodoro widget featuring a dynamic Siamese cat and golden retriever puppy companion system! Built using **React**, **TypeScript**, and **Electron** as a frameless, transparent utility to help you stay focused or rest up in style.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+* **Frameless Square Desktop Widget ($400 \times 400\text{ px}$)**: Compact, sleek layout that acts like a true desktop accessory.
+* **Draggable Interface**: Click and drag the title bar anywhere on your workspace screen.
+* **Dynamic Character System**: 
+    * **Idle Mode**: Both the cat and puppy hang out together on the clouds.
+    * **Work Mode**: The cat stays active to keep you focused.
+    * **Break Mode**: The puppy takes over to watch your rest session.
+* **Tactile Audio Alerts**: Synchronized, non-blocking chimes that automatically quiet down when the next session reloads.
+* **Custom Status Messages**: Replaces annoying browser popups with clean, shifting, in-app micro-text alerts.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Project Setup & Installation
 
-### `npm test`
+Make sure you have [Node.js](https://nodejs.org/) installed, then navigate into the directory and install the project dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-=======
-# pomodoroapp
-a simple pomodoro app
->>>>>>> 6dc0b62af4e4d20234cc39cdd8232f6ebeb59763
+```bash
+cd work-faster
+npm install

@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
-//Placeholder for audio path
-const meowSound = "https://www.soundjay.com/misc/sounds/cat-meow-1.mp3";
+// Audio path
+const meowSound = "../public/cat-alarm.mp3";
 
 function App() {
   // Variables
   const [timeLeft, setTimeLeft] = useState<number>(25 * 60); // 25 minutes in seconds
   const [isRunning, setIsRunning] = useState<boolean>(false); // Is the countdown active?
   const [isBreak, setIsBreak] = useState<boolean>(false); // Work mode (false) or break mode (true)
-  
+  const [statusMessage, setStatusMessage] = useState<string>(""); // Status message to display
+  const audioRef = useRef<HTMLAudioElement | null>(null); // Ref to manage the audio element
+
   // The timer countdown effect
   useEffect(() => {
       let timer: NodeJS.Timeout;
@@ -25,12 +27,47 @@ function App() {
     // The alarm effect
     useEffect(() => {
       if (timeLeft === 0 && isRunning) {
-        const audio = new Audio(meowSound);
-        audio.play().catch(err => console.error("Audio play blocked until user interaction:", err));
-        setIsRunning(false); // Stop the timer
-        alert(isBreak ? "Break's over! Time to work!" : "Time's up! Take a break!"); // Alert the user
+        // Play the audio immediately when the timer hits zero
+        audioRef.current = new Audio(meowSound);
+        audioRef.current.play().catch(err => console.error("Error playing sound:", err));
+
+        // Turn off the active countdown motor
+        setIsRunning(false);
+
+        // Set dynamic time-up text display
+        if (isBreak) {
+          setStatusMessage("Break's over! Time to get back to work!");
+
+          // Wait 8 seconds before resetting the timer for the next work session
+          setTimeout(() => {
+            // Stop the audio explicitly before resetting the timer
+            if (audioRef.current) {
+              audioRef.current.pause();
+              audioRef.current.currentTime = 0; // Reset audio to the beginning
+            }
+
+            setTimeLeft(25 * 60); // Reset to 25 minutes for work
+            setIsBreak(false); // Switch back to work mode
+            setStatusMessage(""); // Clear the status message
+          }, 8000);
+        } else {
+            setStatusMessage("Time's up! Take a break!");
+
+            // Wait 8 seconds before resetting the timer for the next break session
+            setTimeout(() => {
+              // Stop the audio explicitly before resetting the timer
+              if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current.currentTime = 0; // Reset audio to the beginning
+              }
+
+              setTimeLeft(5 * 60); // Reset to 5 minutes for break
+              setIsBreak(true); // Switch to break mode
+              setStatusMessage(""); // Clear the status message
+            }, 8000);
+        }
       }
-    }, [timeLeft, isRunning, isBreak]); // Re-run this block whenever these three values change
+    }, [timeLeft, isRunning, isBreak, meowSound]); // Re-run this block whenever these three values change
   
     // Helper function to format time in MM:SS
     const formatTime = (seconds: number): string => {
@@ -46,6 +83,12 @@ function App() {
         setIsRunning(false);
         setTimeLeft(isBreak ? 5 * 60 : 25 * 60); 
       } else {
+        // Kill any ringing audio immediateky if someone presses play during a milestone text
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0; // Reset audio to the beginning
+        }
+        setStatusMessage(""); // Clear any milestone text if present
         // If it's idle, START the countdown
         setIsRunning(true);
       }
@@ -93,7 +136,15 @@ function App() {
 
           <div className="timer-display">
             <h1>{formatTime(timeLeft)}</h1>
-            <p>{isBreak ? "☕ Rest up!" : "💻 Stay focused!"}</p>
+            <p>
+              {statusMessage ? (
+                // If a milestone is happening, display it in a highlighted style!
+                <span className="milestone-text">🌟 {statusMessage}</span>
+              ) : (
+                // Otherwise, show the regular status message based on the current mode
+                <span>{isBreak ? "☕ Rest up!" : "💻 Stay focused!"}</span>
+              )}
+            </p>
           </div>
 
           <div className="character-display">

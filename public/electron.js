@@ -7,6 +7,10 @@ function createMainWindow() {
     title: 'Work Faster',
     width: 400,
     height: 400,
+    minWidth: 400,
+    minHeight: 400,
+    maxWidth: 600,
+    maxHeight: 600,
     frame: false,
     titleBarStyle: 'hidden',
     webPreferences: {

@@ -15,10 +15,10 @@ body {
 }
 
 .container {
-  width: 400px;
-  height: 400px;
+  width: 100vw;
+  height: 100vh;
   background-color: #d6d085;
-  border-radius: 16px;
+  border-radius: 10px;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -62,6 +62,7 @@ body {
 /* Main Content Area */
 .main-board {
   flex: 1;
+  width: 100%;
   background-color: #7ba1c8;
   border-radius: 12px;
   display: flex;
@@ -112,6 +113,17 @@ body {
   font-weight: 700;
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   margin-bottom: 4px;
+}
+
+.milestone-text {
+  color: #ffeb3b;
+  font-weight: bold;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.6; }
 }
 
 /* Character Animation Box */
