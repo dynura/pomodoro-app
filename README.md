@@ -1,4 +1,4 @@
-# WORK FASTER ♡ 🐾
+# Work Faster ♡ Pomodoro Widget
 
 A cozy, pixel-art desktop Pomodoro widget featuring a dynamic Siamese cat and golden retriever puppy companion system! Built using **React**, **TypeScript**, and **Electron** as a frameless, transparent utility to help you stay focused or rest up in style.
 
