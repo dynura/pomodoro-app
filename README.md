@@ -1,10 +1,14 @@
+<<<<<<< Updated upstream
 # Work Faster ♡ Pomodoro Widget
+=======
+# WORK FASTER ♡ 
+>>>>>>> Stashed changes
 
 A cozy, pixel-art desktop Pomodoro widget featuring a dynamic Siamese cat and golden retriever puppy companion system! Built using **React**, **TypeScript**, and **Electron** as a frameless, transparent utility to help you stay focused or rest up in style.
 
 ---
 
-## ✨ Features
+## Features
 
 * **Frameless Square Desktop Widget ($400 \times 400\text{ px}$)**: Compact, sleek layout that acts like a true desktop accessory.
 * **Draggable Interface**: Click and drag the title bar anywhere on your workspace screen.
@@ -17,10 +21,26 @@ A cozy, pixel-art desktop Pomodoro widget featuring a dynamic Siamese cat and go
 
 ---
 
-## 🛠️ Project Setup & Installation
+## Getting Started
 
-Make sure you have [Node.js](https://nodejs.org/) installed, then navigate into the directory and install the project dependencies:
+### Prerequisites
 
+<<<<<<< Updated upstream
 ```bash
 cd work-faster
 npm install
+=======
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Installation
+
+1. Clone or copy this repository to your local directory.
+2. Open your terminal in the project directory and install the necessary dependencies:
+   ```bash
+   npm install
+
+### Running the App
+To start the application in development mode (launches the React local development server alongside the Electron window container simultaneously):
+   ```bash
+   npm run electron-dev
+>>>>>>> Stashed changes
